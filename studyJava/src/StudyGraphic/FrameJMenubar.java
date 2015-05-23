@@ -20,6 +20,15 @@ public class FrameJMenubar extends JFrame implements ActionListener, WindowListe
 	JMenuBar jMenuBar;
 	
 	// last_attr
+	
+	JMenu jMenuKotrana,
+		jMenuKotranaSnake;
+	JMenuItem jMenuItemKotranaSnake01;
+	
+	JMenuItem jMenuItemDpProxy01;
+	
+	JMenu jMenuDpProxy ;
+	
 	JMenuItem jMenuItemJTableBasic02;
 	
 	
@@ -249,16 +258,30 @@ public class FrameJMenubar extends JFrame implements ActionListener, WindowListe
 		jMenuBar.add(jMenuJTable);
 		
 		
+		jMenuDpProxy = new JMenu("proxy");
+		jMenuDp.add(jMenuDpProxy);
 		
+		jMenuItemDpProxy01 = new JMenuItem("01");
+		jMenuDpProxy.add(jMenuItemDpProxy01);
+		jMenuItemDpProxy01.addActionListener(this);
+		
+		
+		jMenuKotrana = new JMenu("kotrana");
+		jMenuBar.add(jMenuKotrana);
+		
+		jMenuKotranaSnake = new JMenu("snake");
+		jMenuKotrana.add(jMenuKotranaSnake);
+		
+		jMenuItemKotranaSnake01 = new JMenuItem("01");
+		jMenuKotranaSnake.add(jMenuItemKotranaSnake01);
+		jMenuItemKotranaSnake01.addActionListener(this);
 		// last_constructor
-		
+
 		jMenuQuit = new JMenuItem("quit");
 		jMenuQuit.addActionListener(this);
 		jMenuBar.add(jMenuQuit);
 		setJMenuBar(jMenuBar);
 		setVisible(true);
-
-	
 	}
 	
 	//action_listener action_performed
@@ -267,7 +290,13 @@ public class FrameJMenubar extends JFrame implements ActionListener, WindowListe
 		// TODO Auto-generated method stub
 		if(e.getSource() == jMenuItemJTableBasic01){
 			new DialogJTable01();
-		}else if(e.getSource() == jMenuItemJTableBasic02){
+		}else if(e.getSource() == jMenuItemKotranaSnake01) {
+			new FrameBibilavaTest01();
+		}
+		else if(e.getSource() == jMenuItemDpProxy01) {
+			new FrameDpProxy();
+		}
+		else if(e.getSource() == jMenuItemJTableBasic02){
 //			System.out.println("jmenuitemjtablebasic02");
 			new DialogJtable02();
 		}
@@ -431,4 +460,9 @@ class OperationAdd implements Strategy02 {
 		return a + b;
 
 	}
+}
+
+class TestingThis {
+	static int a;
+	
 }

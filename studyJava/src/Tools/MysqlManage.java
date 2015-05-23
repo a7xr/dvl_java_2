@@ -169,7 +169,7 @@ public class MysqlManage {
             connection = DriverManager.getConnection(dbUrl, user, pass);
 //            System.out.println("user: "+user);
 //            System.out.println("pass: "+pass);
-            
+            // Windows>Preferences>General>Appearance>Colors and Fonts 
             isConnected = true;
             
             statement = connection.createStatement();

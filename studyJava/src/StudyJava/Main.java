@@ -15,6 +15,52 @@ import StudyDPReview.*;
 import Tools.*;
 
 public class Main {
+
+
+	//main_graphic
+	public static void main(String[] args) {
+		FrameJMenubar frame = new FrameJMenubar();
+	}
+	
+//	public static void main(String[] args) {
+//		new Thread(new NothingTest01()).start();
+//	}
+	
+//	public static void main(String[] args) {
+//		ThreadTest01 thread = new ThreadTest01();
+//		thread.start();
+//	}
+	
+	
+	
+//	public static void main(String[] args) {
+//		String notes [] = {"C", "D", "E", "F", "G", "A", "B"};
+//		String[] octave = {"4","5","6"};
+//		String name = "";
+//		String note= "";
+//		String bla[] = new String[100];
+//		int g = 0;
+//		for(int i=0; i< 3; i++){
+//			for(int j=0; j<7; j++){
+//				name = notes[j]+octave[i]+" ";
+//				bla[g] = name;
+//				System.out.println(bla[g]);
+//				note += name+" ";
+//				g++;
+//			}
+//		}
+//	}
+	
+//	public static void main(String[] args) {
+//		String [] strArr = new String[5];
+//		strArr[0] = "coucou";
+//		strArr[1] = "coucou";
+//		
+//		for (int i = 0; i < strArr.length; i++) {
+//			System.out.print(strArr[i]);
+//		}
+//	}
+	
 	
 //	public static void main(String[] args) {
 //		ContextState context = new ContextState();
@@ -26,10 +72,7 @@ public class Main {
 //		System.out.println("str: "+str);
 //	}
 	
-	//main_graphic
-	public static void main(String[] args) {
-		FrameJMenubar frame = new FrameJMenubar();
-	}
+
 	
 	
 	// testd about listening in chgt in jtextfield
@@ -367,5 +410,8 @@ public class Main {
 //		Toy toy1 = ftoy.getToy("car");
 //		toy1.speciality();
 //	}
-
+	public Main() {
+		// TODO Auto-generated constructor stub
+	}
+	
 }
