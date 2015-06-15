@@ -2,6 +2,7 @@ package Tools;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Basics {
@@ -41,6 +42,11 @@ public class Basics {
         String res = scanner.nextLine();
         
         return res;
+	}
+	
+	public static int generateIntRand(int min, int max) {
+		Random random = new Random();
+		return random.nextInt((max - min) + 1) + min;
 	}
 	
 }

@@ -1,3 +1,4 @@
 *.class
 .recommenders/*
 .metadata/*
+./jar_extension/sdljava-0.9.1/*
