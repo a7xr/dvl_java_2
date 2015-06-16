@@ -405,7 +405,7 @@ public class FrameBibilavaTest01 extends JFrame implements KeyListener, Runnable
 	}
 	
 	// main_graphic
-	public static void main(String[] args) {
+	public static void main08(String[] args) {
 		new FrameBibilavaTest01();
 //		PointTest pPrev = new PointTest(6, 7);
 //		PointTest pNext = new PointTest(9, 2);
@@ -467,18 +467,34 @@ public class FrameBibilavaTest01 extends JFrame implements KeyListener, Runnable
 
 	@Override
 	public void run() {
-		try {
-			if(horizontal) {
-				moveRight(this.points, sizePt);
+		points.add(new PointTest(0, 0));
+		while(true)
+			try {
+				System.out.println(points.get(0).getX());
+				Thread.sleep(speed);
+				points.get(0).setX(points.get(0).getX() + 1);
+			}catch(InterruptedException e) {
+				
 			}
-			Thread.sleep(speed);
-		}catch(InterruptedException e) {
-			
-		}
 	}
+	
+	
 
+	public static void main(String[] args) {
+		FrameBibilavaTest01 frameBibilavaTest01 = 
+				new FrameBibilavaTest01(State.draft);
+		Thread thread = new Thread(frameBibilavaTest01);
+		thread.start();
+	}
 	
+	public FrameBibilavaTest01(State s) {
+		
+	}
 	
+}
+
+enum State {
+	draft
 }
 
 class PanelTesting extends JPanel {

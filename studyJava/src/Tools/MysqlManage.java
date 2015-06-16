@@ -58,6 +58,30 @@ public class MysqlManage {
         
         return res;
     }
+    /**
+     * the query in the parameter must take only one column
+     * @param _query ex: select col00 from table00
+     * @return
+     */
+    public ArrayList<String> simpleSelectQuery(String _query) {
+    	ArrayList<String> res = new ArrayList<String>();
+    	
+    	try {
+			resultset = this.statement.executeQuery(_query);
+			resultset.first();
+			res.add(resultset.getObject(1).toString());
+			
+			while(resultset.next()) {
+				res.add(resultset.getObject(1).toString());
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return res;
+    }
     
     public int getResultSetSize(){
         int size = 0;

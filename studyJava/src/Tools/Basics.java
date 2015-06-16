@@ -11,6 +11,7 @@ public class Basics {
 		int i = 0;
 		for (String str:array){
 			System.out.println("String["+i+"]: " + str);
+			i++;
 		}
 	}
 	
@@ -47,6 +48,14 @@ public class Basics {
 	public static int generateIntRand(int min, int max) {
 		Random random = new Random();
 		return random.nextInt((max - min) + 1) + min;
+	}
+	
+	public static void printSimpleArrayString(String[] strArr) {
+		int i = 0;
+		for(String str : strArr) {
+			System.out.println(i+": "+str);
+			i++;
+		}
 	}
 	
 }
