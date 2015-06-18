@@ -2,6 +2,7 @@ package Tools;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -58,4 +59,19 @@ public class Basics {
 		}
 	}
 	
+	public static void printHashTableByValue(
+			Hashtable<String, String>hashtable, 
+			String ... values ){
+	
+		for(String value : values ) {
+			System.out.println(value + ": " + hashtable.get(value));
+		}
+		
+	}
+
+	public static void printHashMapByValues(HashMap<String, String> hashMap, String ... values ) {
+		for(String value : values ) {
+			System.out.println(value + ": " + hashMap.get(value));
+		}
+	}
 }
