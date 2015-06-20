@@ -1,5 +1,11 @@
 package StudyJava;
 
+import java.awt.FlowLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JFrame;
+
 public class StuffsTest {
 
 }
@@ -28,18 +34,62 @@ class NothingTest01 implements Runnable{
 	
 }
 
+class FrameThis extends JFrame implements KeyListener{
+	
+	ThreadTest01 threadTest01 = new ThreadTest01();
+	
+	public FrameThis() {
+		setTitle("title");
+		setBounds(50, 50, 500, 300);
+		setLayout(new FlowLayout());
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		threadTest01.start();
+
+		setVisible(true);
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		
+	}
+	
+}
+
 class ThreadTest01 extends Thread{
 	
-	String str = "";
-	int wait = 500, times = 5;
+	int strInt = 0;
+	int wait = 500, times = 1;
 	
 	@Override
 	public void run() {
-		str = "this is a test";
+//		str = ;
+		
 		try {
 			for (int i = 0; i < times; i++) {
-				System.out.println(this.str);
+				System.out.println(this.strInt + "");
+				strInt++;
+					sleep(this.wait);
 				
+			}
+		}catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			for (int i = 0; i < times; i++) {
+				System.out.println(this.strInt + "");
+				strInt--;
 					sleep(this.wait);
 				
 			}
@@ -51,4 +101,5 @@ class ThreadTest01 extends Thread{
 	public void soping(String txt) {
 		System.out.println(txt);
 	}	
+
 }

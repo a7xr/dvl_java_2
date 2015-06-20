@@ -16,11 +16,16 @@ import Tools.*;
 
 public class Main {
 
+	
 
-	//main_graphic
 	public static void main(String[] args) {
-		FrameJMenubar frame = new FrameJMenubar();
+		new StudyThread01();
 	}
+	
+	//main_graphic
+//	public static void main(String[] args) {
+//		FrameJMenubar frame = new FrameJMenubar();
+//	}
 	
 //	public static void main(String[] args) {
 //		new Thread(new NothingTest01()).start();

@@ -648,7 +648,7 @@ public class TalnToolsCp {
 	 * 
 	 * @param args
 	 */
-	public static void main19(String[] args) {
+	public static void main(String[] args) {
 		Basics.printHashMapByValues(new TalnToolsCp().rasaTeny02("andaingana"),
 				"tovona", "ftt", "tovana");
 	}
@@ -661,7 +661,7 @@ public class TalnToolsCp {
 	 * to test nSoloNvolooKNaazFttV("drora")
 	 * 15
 	 */
-	public static void main(String[] args) {
+	public static void main15(String[] args) {
 
 		System.out.println(new TalnToolsCp().nSoloNvolooKNaazFttV("nao"));
 	}

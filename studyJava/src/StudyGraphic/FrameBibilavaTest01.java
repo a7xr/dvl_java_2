@@ -10,6 +10,7 @@ import javax.naming.SizeLimitExceededException;
 import javax.swing.*;
 import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
 
+import StudyJava.StudyThread01;
 import Tools.Basics;
 
 public class FrameBibilavaTest01 extends JFrame implements KeyListener, Runnable{
@@ -19,6 +20,8 @@ public class FrameBibilavaTest01 extends JFrame implements KeyListener, Runnable
 	PointTest food;
 	ArrayList<PointTest> obstacles = new ArrayList<>();
 	int speed = 1000;
+	
+	ExtThread thread = new ExtThread();
 	
 	boolean horizontal, vertical;
 	
@@ -100,12 +103,14 @@ public class FrameBibilavaTest01 extends JFrame implements KeyListener, Runnable
 	}
 	
 	//constructor
+	
+	// constructor
 	public FrameBibilavaTest01() {
-		// TODO Auto-generated constructor stub
 		setTitle("title");
 		setBounds(50, 50, 500, 250);
 //		setLayout(new FlowLayout());
 
+		
 		PointTest pointHead = new PointTest(80, 50);
 		pointHead.color = Color.RED;
 		points.add(pointHead);
@@ -113,6 +118,7 @@ public class FrameBibilavaTest01 extends JFrame implements KeyListener, Runnable
 		points.add(new PointTest(60, 50));
 		points.add(new PointTest(50, 50));
 		
+		thread.setPanel(panelTesting);
 		addKeyListener(this);
 		
 		
@@ -405,7 +411,7 @@ public class FrameBibilavaTest01 extends JFrame implements KeyListener, Runnable
 	}
 	
 	// main_graphic
-	public static void main08(String[] args) {
+	public static void main(String[] args) {
 		new FrameBibilavaTest01();
 //		PointTest pPrev = new PointTest(6, 7);
 //		PointTest pNext = new PointTest(9, 2);
@@ -417,13 +423,21 @@ public class FrameBibilavaTest01 extends JFrame implements KeyListener, Runnable
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		//  Auto-generated method stub
 		
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+		//  Auto-generated method stub
+		
+		thread.goD = false;
+		thread.goU = false;
+		thread.goL = false;
+		thread.goR = true;
+		
+		thread.start();
+		
 		int a = e.getKeyCode();
 		if(points.get(0).getX() == this.getWidth()){
 			touchedLimitRight();
@@ -462,7 +476,7 @@ public class FrameBibilavaTest01 extends JFrame implements KeyListener, Runnable
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		//  Auto-generated method stub
 	}
 
 	@Override
@@ -480,13 +494,8 @@ public class FrameBibilavaTest01 extends JFrame implements KeyListener, Runnable
 	
 	
 
-	public static void main(String[] args) {
-		FrameBibilavaTest01 frameBibilavaTest01 = 
-				new FrameBibilavaTest01(State.draft);
-		Thread thread = new Thread(frameBibilavaTest01);
-		thread.start();
-	}
 	
+
 	public FrameBibilavaTest01(State s) {
 		
 	}
@@ -503,28 +512,35 @@ class PanelTesting extends JPanel {
 	int [] sizePt = {10, 10};
 	PointTest food;
 	
+	private void mnwSarinleLoanleBibil(Graphics g, PointTest pt) {
+		g.setColor(pt.color);
+		g.fillOval(pt.x, pt.y, sizePt[0], sizePt[1]);
+	}
+	
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
-		g.setColor(points.get(0).color);
-		g.fillOval(points.get(0).x, points.get(0).y, sizePt[0], sizePt[1]);
+		mnwSarinleLoanleBibil(g, points.get(0));
 		
 		g.setColor(food.color);
 		g.fillOval(food.getX(), food.getY(), sizePt[0], sizePt[1]);
 		
+		// mnw anle sarinle bibilava
 		for (int i = 1; i < points.size(); i++) {
 			g.setColor(points.get(i).color);
 			g.fillOval(points.get(i).x, points.get(i).y, sizePt[0],	sizePt[1]);
 		}
 		
+		// mnw anle sarinle obstacles
 		for(int e = 0; e < obstacles.size(); e++) {
 			g.setColor(obstacles.get(e).color);
 			g.fillOval(obstacles.get(e).x, obstacles.get(e).y, sizePt[0], sizePt[1]);
 		}
 		
 	}
-	
+
+
 }
 
 class PointTest {
@@ -566,7 +582,7 @@ class PointTest {
 	}
 	
 	/**
-	 * mbola tsy mande
+	 * mbola tsy mande(
 	 * @param toClone
 	 * @return
 	 */
@@ -605,4 +621,60 @@ class PointTest {
 	}
 	
 	
+}
+
+class ExtThread extends Thread {
+	boolean goU, goD, goR, goL;
+
+	PointTest point = new PointTest(10, 10);
+	int[] sizePt = new int[] { 10, 10 };
+	int wait = 500;
+
+	JPanel panel;
+	
+	public void setPanel(JPanel _panel) {
+		this.panel = _panel;
+	}
+	
+	public int[] getSizePt() {
+		return this.sizePt;
+	}
+
+	@Override
+	public void run() {
+		
+		while (true) {
+			try {
+				if ((goR) && (!goD) && (!goU) && (!goL)) {
+					point.setX(point.getX() + getSizePt()[0]);
+					
+					System.out.println("x: " + point.getX() + "y: " + 
+							point.getY());
+//					sleep(wait);
+				} else if ((!goR) && (!goD) && (!goU) && (goL)) {
+					point.setX(point.getX() - getSizePt()[0]);
+					
+					System.out.println(
+							"x: " + point.getX() + "y: " + point.getY());
+//					sleep(wait);
+				} else if ((!goR) && (goD) && (!goU) && (!goL)) {
+					point.setY(point.getY() + getSizePt()[1]);
+					
+					System.out.println(
+							"x: " + point.getX() + "y: " + point.getY());
+//					sleep(wait);
+				}else if ((!goR) && (!goD) && (goU) && (!goL)) {
+					point.setY(point.getY() - getSizePt()[1]);
+					System.out.println(
+							"x: " + point.getX() + "y: " + point.getY());
+				}
+				sleep(wait);
+				panel.repaint();
+			} catch (InterruptedException e) {
+				//  Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
 }
