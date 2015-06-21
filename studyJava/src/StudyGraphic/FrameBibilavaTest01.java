@@ -109,7 +109,7 @@ public class FrameBibilavaTest01 extends JFrame implements KeyListener, Runnable
 		setTitle("title");
 		setBounds(50, 50, 500, 250);
 //		setLayout(new FlowLayout());
-
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		PointTest pointHead = new PointTest(80, 50);
 		pointHead.color = Color.RED;
@@ -118,6 +118,7 @@ public class FrameBibilavaTest01 extends JFrame implements KeyListener, Runnable
 		points.add(new PointTest(60, 50));
 		points.add(new PointTest(50, 50));
 		
+		thread.setPointTest(points.get(0));
 		thread.setPanel(panelTesting);
 		addKeyListener(this);
 		
@@ -632,6 +633,10 @@ class ExtThread extends Thread {
 
 	JPanel panel;
 	
+	public void setPointTest(PointTest pt) {
+		this.point = pt;
+	}
+	
 	public void setPanel(JPanel _panel) {
 		this.panel = _panel;
 	}
@@ -640,16 +645,27 @@ class ExtThread extends Thread {
 		return this.sizePt;
 	}
 
+	ArrayList<PointTest> points;
+	
+	public void setPoints(ArrayList<PointTest> _pts) {
+		this.points = _pts;
+	}
+	
 	@Override
 	public void run() {
 		
 		while (true) {
 			try {
 				if ((goR) && (!goD) && (!goU) && (!goL)) {
-					point.setX(point.getX() + getSizePt()[0]);
+//					point.setX(point.getX() + getSizePt()[0]);
+//					
+//					System.out.println("x: " + point.getX() + "y: " + 
+//							point.getY());
 					
-					System.out.println("x: " + point.getX() + "y: " + 
-							point.getY());
+					new FrameBibilavaTest01().move(this.points, 
+							new int []{10, 10},
+							KeyEvent.VK_LEFT);
+					
 //					sleep(wait);
 				} else if ((!goR) && (!goD) && (!goU) && (goL)) {
 					point.setX(point.getX() - getSizePt()[0]);

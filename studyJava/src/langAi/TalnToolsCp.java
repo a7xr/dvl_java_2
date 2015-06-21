@@ -204,6 +204,42 @@ public class TalnToolsCp {
 	}
 
 	/**
+	 * 
+	 * @param _teny
+	 * @return
+	 */
+	public HashMap<String, String> jeryTovona( String _teny) {
+		HashMap <String, String> res = new HashMap<String, String>();
+		
+		if(isTovona(_teny.substring(0, 3))) {
+			res.put("tovona", _teny.substring(0, 3));
+			res.put("ftt", 
+					_teny.substring(3, _teny.length() - 3));
+			res.put("tovana", _teny.substring(_teny.length() - 3, 
+					_teny.length()));
+			return res;
+		}
+		if(isTovona(_teny.substring(0, 2))) {
+			res.put("tovona", _teny.substring(0, 2));
+			res.put("ftt", 
+					_teny.substring(2, _teny.length() - 3));
+			res.put("tovana", _teny.substring(_teny.length() - 3, 
+					_teny.length()));
+			return res;
+		}
+		if(isTovona(_teny.substring(0, 1))) {
+			res.put("tovona", _teny.substring(0, 1));
+			res.put("ftt", 
+					_teny.substring(1, _teny.length() - 3));
+			res.put("tovana", _teny.substring(_teny.length() - 3, 
+					_teny.length()));
+			return res;
+		}
+		
+		return res;
+	}
+	
+	/**
 	 * mtov amle rasaTeny02 fa otrn misi diso le rasaTeny02 an
 	 * @param _teny
 	 * @return
@@ -211,67 +247,33 @@ public class TalnToolsCp {
 	public HashMap<String, String> rasaTeny02(String _teny) {
 		HashMap<String, String> res = new HashMap<>();
 
+		
 		if(isTovana(_teny.substring(_teny.length() - 3, _teny.length()))){
 			// rah misi tovana
 			
+//			System.out.println(_teny+" ti");
 			
 			
 			// ny 3manaraka ireto mteny hoe sadi misi tovona no misi tovana
-			if(isTovona(_teny.substring(0, 3))) {
-				res.put("tovona", _teny.substring(0, 3));
-				res.put("ftt", 
-						_teny.substring(3, _teny.length() - 3));
-				res.put("tovana", _teny.substring(_teny.length() - 3, 
-						_teny.length()));
+			if(isTovona(_teny)){
+				// misi tovona no misi tovana
+				return jeryTovona(_teny);
+			}else {
+				// misi tovana fa tsis tovona
+				res.put("tovona", "");
+				res.put("ftt", _teny.substring(0, _teny.length() - 3));
+				res.put("tovana", _teny.substring(_teny.length() - 3, _teny.length()));
 				return res;
 			}
-			if(isTovona(_teny.substring(0, 2))) {
-				res.put("tovona", _teny.substring(0, 2));
-				res.put("ftt", 
-						_teny.substring(2, _teny.length() - 3));
-				res.put("tovana", _teny.substring(_teny.length() - 3, 
-						_teny.length()));
-				return res;
-			}
-			if(isTovona(_teny.substring(0, 1))) {
-				res.put("tovona", _teny.substring(0, 1));
-				res.put("ftt", 
-						_teny.substring(1, _teny.length() - 3));
-				res.put("tovana", _teny.substring(_teny.length() - 3, 
-						_teny.length()));
-				return res;
-			}
-			
 			
 		}else {
 			// rah tsis tovana
 			
-			if(isTovona(_teny.substring(0, 3))) {
-				res.put("tovona", _teny.substring(0, 3));
-				res.put("ftt", 
-						_teny.substring(3, _teny.length()));
-				res.put("tovana", "");
-				return res;
-			}
-			if(isTovona(_teny.substring(0, 2))) {
-				res.put("tovona", _teny.substring(0, 2));
-				res.put("ftt", 
-						_teny.substring(2, _teny.length()));
-				res.put("tovana", "");
-				return res;
-			}
-			if(isTovona(_teny.substring(0, 1))) {
-				res.put("tovona", _teny.substring(0, 1));
-				res.put("ftt", 
-						_teny.substring(1, _teny.length()));
-				res.put("tovana", "");
-				return res;
-			}
-			
-			
+//			if(isTovona(_teny.substring(0, endIndex)))
+			return jeryTovona(_teny);
 		}
-		System.out.println("io eee");
-		return null;
+//		System.out.println("io eee");
+//		return null;
 	}
 
 	
@@ -473,18 +475,33 @@ public class TalnToolsCp {
 	}
 	
 	//etoza
+	/**
+	 * ohatra _teny = iaingana
+	 * <br/> tovona = i
+	 * <br/> ftt = aing, nefa tokony ho "ainga"
+	 * <br/> tovana = ana
+	 * 
+	 * @param _teny
+	 * @return
+	 */
 	public HashMap<String, String> rasaTeny03(String _teny) {
 		HashMap<String, String> rasaTenyTsMety = rasaTeny02(_teny);
 		HashMap<String, String> res = new HashMap<String, String>();
 		
-		if(isFtt(rasaTenyTsMety.get("ftt")))
+		System.out.println(rasaTenyTsMety.get("ftt"));
+		if(isFtt(rasaTenyTsMety.get("ftt"))){
 			return rasaTenyTsMety;
+		}
 		else {
-			if(miafaraAmConsonentV(_teny)) {
+			if(miafaraAmConsonentV(rasaTenyTsMety.get("ftt"))) {
 				String fttVw = rasaTenyTsMety.get("ftt").toString() + 
 						rasaTenyTsMety.get("tovana").toString().charAt(0);
 				if(isFtt(fttVw)) {
-//					res.put("ftt, ftt)
+					res.put("ftt", fttVw);
+					res.put("tovona", rasaTenyTsMety.get("tovona"));
+					res.put("tovana", rasaTenyTsMety.get("tovana"));
+				}else {
+					// mbola tantara hafa
 				}
 			}
 		}
@@ -643,13 +660,18 @@ public class TalnToolsCp {
 
 	}
 
+	public static void main20(String[] args) {
+		Basics.printHashMapByValues(new TalnToolsCp().rasaTeny03("dakana"),
+				"tovona", "ftt", "tovana");
+	}
+	
 	/**
 	 * i testena ni rasaTeny02(String)
 	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Basics.printHashMapByValues(new TalnToolsCp().rasaTeny02("andaingana"),
+		Basics.printHashMapByValues(new TalnToolsCp().rasaTeny03("dakana"),
 				"tovona", "ftt", "tovana");
 	}
 

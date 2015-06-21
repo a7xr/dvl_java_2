@@ -1,26 +1,23 @@
 package StudyJava;
-import java.awt.FlowLayout;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Vector;
 
-import javax.swing.JFrame;
-import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-
-import StudyGraphic.*;
-import StudyDP.*;
-import StudyDPReview.*;
-import Tools.*;
+import Tools.MysqlManage;
 
 public class Main {
 
-	
-
-	public static void main(String[] args) {
-		new StudyThread01();
+	public static void main(String[] args) throws SQLException, ClassNotFoundException {
+		
+		HashMap<Integer, Integer> vector00 = new HashMap<>();
+		
 	}
+
+//	public static void main(String[] args) {
+//		new StudyThread01();
+//	}
 	
 	//main_graphic
 //	public static void main(String[] args) {

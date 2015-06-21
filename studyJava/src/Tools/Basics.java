@@ -3,8 +3,12 @@ package Tools;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Basics {
 	
@@ -74,4 +78,47 @@ public class Basics {
 			System.out.println(value + ": " + hashMap.get(value));
 		}
 	}
+
+	public static <K, V> void printHashMapByValues(HashMap<K, V> hashmap, V ... values) {
+		for(V value : values) {
+			System.out.println(value+": " + hashmap.get(value));
+		}
+	}
+	
+	public static <K, V> void printHashMap(HashMap<K, V> hashMap) {
+		ArrayList<K> keys = getKeysFromHashMap(hashMap);
+		
+		for(K key : keys) 
+			System.out.println(key + ": "+hashMap.get(key));
+	}
+	
+	public static <K, V> ArrayList<K> getKeysFromHashMap(HashMap<K, V> hashMap) {
+		ArrayList<K> res;
+		Set < Entry<K, V> > entrees = hashMap.entrySet () ;
+		
+		Iterator iterator = entrees.iterator();
+		
+		res = new ArrayList();
+		
+		while(iterator.hasNext()) {
+			Map.Entry <K, V> entree = (Map.Entry)iterator.next() ;
+			res.add(entree.getKey());
+		}
+		
+		return res;
+	}
+	
+	public static void main00(String[] args) {
+		HashMap<Integer, String> hashMap = new HashMap<>();
+		
+		hashMap.put(1, "coucou");
+		hashMap.put(2, "test");
+		hashMap.put(3, "hello");
+		
+		ArrayList<Integer> arrayList = getKeysFromHashMap(hashMap);
+		
+		System.out.println(hashMap.get(1));
+		System.out.println(hashMap.get(2));
+	}
+	
 }
